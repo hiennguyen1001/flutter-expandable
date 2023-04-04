@@ -98,6 +98,8 @@ class ExpandableThemeData {
   /// Expand icon padding.
   final EdgeInsets? iconPadding;
 
+  final Decoration? iconDecoration;
+
   /// Icon rotation angle in clockwise radians. For example, specify `math.pi` to rotate the icon by 180 degrees
   /// clockwise when clicking on the expand button.
   final double? iconRotationAngle;
@@ -130,6 +132,7 @@ class ExpandableThemeData {
     this.hasIcon,
     this.iconSize,
     this.iconPadding,
+    this.iconDecoration,
     this.iconRotationAngle,
     this.expandIcon,
     this.collapseIcon,
@@ -169,6 +172,7 @@ class ExpandableThemeData {
         hasIcon: theme.hasIcon ?? defaults.hasIcon,
         iconSize: theme.iconSize ?? defaults.iconSize,
         iconPadding: theme.iconPadding ?? defaults.iconPadding,
+        iconDecoration: theme.iconDecoration ?? defaults.iconDecoration,
         iconRotationAngle:
             theme.iconRotationAngle ?? defaults.iconRotationAngle,
         expandIcon: theme.expandIcon ?? defaults.expandIcon,
@@ -723,8 +727,9 @@ class _ExpandableIconState extends State<ExpandableIcon>
   Widget build(BuildContext context) {
     final theme = ExpandableThemeData.withDefaults(widget.theme, context);
 
-    return Padding(
+    return Container(
       padding: theme.iconPadding!,
+      decoration: theme.iconDecoration,
       child: AnimatedBuilder(
         animation: animation!,
         builder: (context, child) {
